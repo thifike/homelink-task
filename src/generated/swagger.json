@@ -1,0 +1,610 @@
+{
+	"openapi": "3.0.0",
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"DeviceType.HeatAlarm": {
+				"enum": [
+					"HA"
+				],
+				"type": "string"
+			},
+			"ThermalDeviceConfiguration": {
+				"properties": {
+					"deviceType": {
+						"$ref": "#/components/schemas/DeviceType.HeatAlarm"
+					},
+					"temperatureLowThreshold": {
+						"type": "number",
+						"format": "double"
+					},
+					"temperatureHighThreshold": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"deviceType",
+					"temperatureLowThreshold",
+					"temperatureHighThreshold"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"DeviceType.EnvironmentalSensor": {
+				"enum": [
+					"ES"
+				],
+				"type": "string"
+			},
+			"EnvironmentalDeviceConfiguration": {
+				"properties": {
+					"deviceType": {
+						"$ref": "#/components/schemas/DeviceType.EnvironmentalSensor"
+					}
+				},
+				"required": [
+					"deviceType"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"DeviceType.SmokeAlarm": {
+				"enum": [
+					"SA"
+				],
+				"type": "string"
+			},
+			"SmokeDeviceConfiguration": {
+				"properties": {
+					"deviceType": {
+						"$ref": "#/components/schemas/DeviceType.SmokeAlarm"
+					},
+					"concentrationHighThreshold": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"deviceType",
+					"concentrationHighThreshold"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Device": {
+				"properties": {
+					"series": {
+						"type": "string",
+						"minLength": 3
+					},
+					"modelName": {
+						"type": "string",
+						"minLength": 3
+					},
+					"deviceConfiguration": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/ThermalDeviceConfiguration"
+							},
+							{
+								"$ref": "#/components/schemas/EnvironmentalDeviceConfiguration"
+							},
+							{
+								"$ref": "#/components/schemas/SmokeDeviceConfiguration"
+							}
+						]
+					},
+					"id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"series",
+					"modelName",
+					"deviceConfiguration",
+					"id"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ValidateErrorJSON": {
+				"properties": {
+					"message": {
+						"type": "string",
+						"enum": [
+							"Validation failed"
+						],
+						"nullable": false
+					},
+					"details": {
+						"properties": {},
+						"additionalProperties": {},
+						"type": "object"
+					}
+				},
+				"required": [
+					"message",
+					"details"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"DeviceCreationParams": {
+				"properties": {
+					"series": {
+						"type": "string",
+						"minLength": 3
+					},
+					"modelName": {
+						"type": "string",
+						"minLength": 3
+					},
+					"deviceConfiguration": {
+						"anyOf": [
+							{
+								"$ref": "#/components/schemas/ThermalDeviceConfiguration"
+							},
+							{
+								"$ref": "#/components/schemas/EnvironmentalDeviceConfiguration"
+							},
+							{
+								"$ref": "#/components/schemas/SmokeDeviceConfiguration"
+							}
+						]
+					}
+				},
+				"required": [
+					"series",
+					"modelName",
+					"deviceConfiguration"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"DeviceConfiguration": {
+				"anyOf": [
+					{
+						"$ref": "#/components/schemas/ThermalDeviceConfiguration"
+					},
+					{
+						"$ref": "#/components/schemas/EnvironmentalDeviceConfiguration"
+					},
+					{
+						"$ref": "#/components/schemas/SmokeDeviceConfiguration"
+					}
+				]
+			},
+			"AlarmStatus": {
+				"enum": [
+					"N",
+					"A"
+				],
+				"type": "string"
+			},
+			"ThermalDataPoint": {
+				"description": "Types",
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"dataPointType": {
+						"type": "string",
+						"enum": [
+							"T"
+						],
+						"nullable": false
+					},
+					"temperature": {
+						"type": "number",
+						"format": "double"
+					},
+					"alarmStatus": {
+						"$ref": "#/components/schemas/AlarmStatus"
+					}
+				},
+				"required": [
+					"id",
+					"dataPointType",
+					"temperature",
+					"alarmStatus"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"EnvironmentalDataPoint": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"dataPointType": {
+						"type": "string",
+						"enum": [
+							"E"
+						],
+						"nullable": false
+					},
+					"temperature": {
+						"type": "number",
+						"format": "double"
+					},
+					"humidity": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"id",
+					"dataPointType",
+					"temperature",
+					"humidity"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"SmokeDataPoint": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"dataPointType": {
+						"type": "string",
+						"enum": [
+							"S"
+						],
+						"nullable": false
+					},
+					"concentration": {
+						"type": "number",
+						"format": "double"
+					},
+					"alarmStatus": {
+						"$ref": "#/components/schemas/AlarmStatus"
+					}
+				},
+				"required": [
+					"id",
+					"dataPointType",
+					"concentration",
+					"alarmStatus"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"DataPoint": {
+				"anyOf": [
+					{
+						"$ref": "#/components/schemas/ThermalDataPoint"
+					},
+					{
+						"$ref": "#/components/schemas/EnvironmentalDataPoint"
+					},
+					{
+						"$ref": "#/components/schemas/SmokeDataPoint"
+					}
+				]
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "homelink-task",
+		"version": "1.0.0",
+		"description": "HomeLink Take-home Task",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {
+			"name": "Bela Lenkehegyi"
+		}
+	},
+	"paths": {
+		"/devices/{deviceId}": {
+			"get": {
+				"operationId": "GetDeviceDetails",
+				"responses": {
+					"200": {
+						"description": "The details of the device if exists or throws an error otherwise.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Device"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"series": "3000",
+											"modelName": "Ei3014 Heat Alarm",
+											"deviceConfiguration": {
+												"deviceType": "HA",
+												"temperatureLowThreshold": 16,
+												"temperatureHighThreshold": 31
+											},
+											"id": "4796cc2e-1015-469d-87f1-f7a8a7c7a991"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Retrieves the details of a registered device.",
+				"security": [],
+				"parameters": [
+					{
+						"description": "The identifier of the device.",
+						"in": "path",
+						"name": "deviceId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "4796cc2e-1015-469d-87f1-f7a8a7c7a991"
+					}
+				]
+			}
+		},
+		"/devices": {
+			"get": {
+				"operationId": "ListDevices",
+				"responses": {
+					"200": {
+						"description": "The list of registered devices.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Device"
+									},
+									"type": "array"
+								},
+								"examples": {
+									"Example 1": {
+										"value": [
+											{
+												"series": "3000",
+												"modelName": "Ei3014 Heat Alarm",
+												"deviceConfiguration": {
+													"deviceType": "HA",
+													"temperatureLowThreshold": 16,
+													"temperatureHighThreshold": 31
+												},
+												"id": "4796cc2e-1015-469d-87f1-f7a8a7c7a991"
+											},
+											{
+												"series": "1000",
+												"modelName": "Ei1020 Environmental Sensor",
+												"deviceConfiguration": {
+													"deviceType": "ES"
+												},
+												"id": "992a28d9-c78d-416c-95df-c65c2ead406c"
+											},
+											{
+												"series": "3000",
+												"modelName": "Ei3016 Optical Smoke Alarm",
+												"deviceConfiguration": {
+													"deviceType": "SA",
+													"concentrationHighThreshold": 0.4
+												},
+												"id": "32b3e36c-2e86-4f03-9a09-0b6c676057b3"
+											}
+										]
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Lists all registered devices.",
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "RegisterDevice",
+				"responses": {
+					"200": {
+						"description": "The device details or throws an error in case of a failure.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Device"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"series": "1000",
+											"modelName": "Ei1020 Environmental Sensor",
+											"deviceConfiguration": {
+												"deviceType": "ES"
+											},
+											"id": "992a28d9-c78d-416c-95df-c65c2ead406c"
+										}
+									}
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ValidateErrorJSON"
+								}
+							}
+						}
+					}
+				},
+				"description": "Registers a new device.",
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"description": "The details of the new device.",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/DeviceCreationParams",
+								"description": "The details of the new device."
+							},
+							"example": {
+								"series": "1000",
+								"modelName": "Ei1020 Environmental Sensor",
+								"deviceConfiguration": {
+									"deviceType": "ES"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/devices/{deviceId}/configuration": {
+			"post": {
+				"operationId": "UpdateDeviceConfiguration",
+				"responses": {
+					"200": {
+						"description": "The updated device configuration or throws an error in case of a failure.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/DeviceConfiguration"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"deviceType": "SA",
+											"concentrationHighThreshold": 0.4
+										}
+									}
+								}
+							}
+						}
+					},
+					"422": {
+						"description": "Validation Failed",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ValidateErrorJSON"
+								}
+							}
+						}
+					}
+				},
+				"description": "Updates the configuration of the device.",
+				"security": [],
+				"parameters": [
+					{
+						"description": "The identifier of the device to update the configuration on.",
+						"in": "path",
+						"name": "deviceId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "4796cc2e-1015-469d-87f1-f7a8a7c7a991"
+					}
+				],
+				"requestBody": {
+					"description": "The new configuration to update.",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/DeviceConfiguration",
+								"description": "The new configuration to update."
+							},
+							"example": {
+								"deviceType": "HA",
+								"temperatureLowThreshold": 16,
+								"temperatureHighThreshold": 31
+							}
+						}
+					}
+				}
+			}
+		},
+		"/devices/{deviceId}/datapoint": {
+			"get": {
+				"operationId": "GetDeviceDataPoint",
+				"responses": {
+					"200": {
+						"description": "A data point (status) of the device.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/DataPoint"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"alarmStatus": "N",
+											"dataPointType": "T",
+											"id": "4796cc2e-1015-469d-87f1-f7a8a7c7a991",
+											"temperature": 18.510887776780095
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Returns a data point (status) of a device.",
+				"security": [],
+				"parameters": [
+					{
+						"description": "The identifier of the device to query.",
+						"in": "path",
+						"name": "deviceId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "4796cc2e-1015-469d-87f1-f7a8a7c7a991"
+					}
+				]
+			}
+		},
+		"/devices/{deviceId}/delete": {
+			"post": {
+				"operationId": "DeleteDevice",
+				"responses": {
+					"200": {
+						"description": "'true' if successful or throws an error otherwise.",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "boolean"
+								}
+							}
+						}
+					}
+				},
+				"description": "Unregisters a device.",
+				"security": [],
+				"parameters": [
+					{
+						"description": "The identifier of the device",
+						"in": "path",
+						"name": "deviceId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						},
+						"example": "4796cc2e-1015-469d-87f1-f7a8a7c7a991"
+					}
+				]
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}

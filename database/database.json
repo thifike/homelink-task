@@ -1,0 +1,24 @@
+[
+  {
+    "series": "3000",
+    "modelName": "Ei3014 Heat Alarm",
+    "deviceConfiguration": {
+      "deviceType": "HA",
+      "temperatureLowThreshold": 16,
+      "temperatureHighThreshold": 31
+    },
+    "id": "4796cc2e-1015-469d-87f1-f7a8a7c7a991"
+  },
+  {
+    "series": "1000",
+    "modelName": "Ei1020 Environmental Sensor",
+    "deviceConfiguration": { "deviceType": "ES" },
+    "id": "992a28d9-c78d-416c-95df-c65c2ead406c"
+  },
+  {
+    "series": "3000",
+    "modelName": "Ei3016 Optical Smoke Alarm",
+    "deviceConfiguration": { "deviceType": "SA", "concentrationHighThreshold": 0.4 },
+    "id": "32b3e36c-2e86-4f03-9a09-0b6c676057b3"
+  }
+]

@@ -1,0 +1,1 @@
+{"root":["./src/app.ts","./src/configuration.ts","./src/errorhandler.ts","./src/server.ts","./src/types.ts","./src/datasource/datasource.ts","./src/datasource/filedatasource.ts","./src/devices/deviceservice.ts","./src/devices/devicescontroller.ts","./src/devices/datapointsimulator.ts","./src/generated/routes.ts"],"version":"5.7.2"}

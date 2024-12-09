@@ -1,0 +1,132 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FileDataSource CRUD tests Create adds the item to the array 1`] = `
+{
+  "deviceConfiguration": {
+    "deviceType": "ES",
+  },
+  "id": "the_id",
+  "modelName": "the-model",
+  "series": "the-series",
+}
+`;
+
+exports[`FileDataSource CRUD tests Create adds the item to the array 2`] = `"[{"series":"3000","modelName":"Ei3014 Heat Alarm","deviceConfiguration":{"deviceType":"HA","temperatureLowThreshold":16,"temperatureHighThreshold":31},"id":"4796cc2e-1015-469d-87f1-f7a8a7c7a991"},{"series":"1000","modelName":"Ei1020 Environmental Sensor","deviceConfiguration":{"deviceType":"ES"},"id":"992a28d9-c78d-416c-95df-c65c2ead406c"},{"series":"3000","modelName":"Ei3016 Optical Smoke Alarm","deviceConfiguration":{"deviceType":"SA","concentrationHighThreshold":0.4},"id":"32b3e36c-2e86-4f03-9a09-0b6c676057b3"},{"id":"the_id","series":"the-series","modelName":"the-model","deviceConfiguration":{"deviceType":"ES"}}]"`;
+
+exports[`FileDataSource CRUD tests Delete deletes a device successfully 1`] = `"[{"series":"3000","modelName":"Ei3014 Heat Alarm","deviceConfiguration":{"deviceType":"HA","temperatureLowThreshold":16,"temperatureHighThreshold":31},"id":"4796cc2e-1015-469d-87f1-f7a8a7c7a991"},{"series":"1000","modelName":"Ei1020 Environmental Sensor","deviceConfiguration":{"deviceType":"ES"},"id":"992a28d9-c78d-416c-95df-c65c2ead406c"}]"`;
+
+exports[`FileDataSource CRUD tests List returns the list of all items 1`] = `
+[
+  {
+    "deviceConfiguration": {
+      "deviceType": "HA",
+      "temperatureHighThreshold": 31,
+      "temperatureLowThreshold": 16,
+    },
+    "id": "4796cc2e-1015-469d-87f1-f7a8a7c7a991",
+    "modelName": "Ei3014 Heat Alarm",
+    "series": "3000",
+  },
+  {
+    "deviceConfiguration": {
+      "deviceType": "ES",
+    },
+    "id": "992a28d9-c78d-416c-95df-c65c2ead406c",
+    "modelName": "Ei1020 Environmental Sensor",
+    "series": "1000",
+  },
+  {
+    "deviceConfiguration": {
+      "concentrationHighThreshold": 0.4,
+      "deviceType": "SA",
+    },
+    "id": "32b3e36c-2e86-4f03-9a09-0b6c676057b3",
+    "modelName": "Ei3016 Optical Smoke Alarm",
+    "series": "3000",
+  },
+]
+`;
+
+exports[`FileDataSource CRUD tests List returns the list of all items without supplying a predicate 1`] = `
+[
+  {
+    "deviceConfiguration": {
+      "deviceType": "HA",
+      "temperatureHighThreshold": 31,
+      "temperatureLowThreshold": 16,
+    },
+    "id": "4796cc2e-1015-469d-87f1-f7a8a7c7a991",
+    "modelName": "Ei3014 Heat Alarm",
+    "series": "3000",
+  },
+  {
+    "deviceConfiguration": {
+      "deviceType": "ES",
+    },
+    "id": "992a28d9-c78d-416c-95df-c65c2ead406c",
+    "modelName": "Ei1020 Environmental Sensor",
+    "series": "1000",
+  },
+  {
+    "deviceConfiguration": {
+      "concentrationHighThreshold": 0.4,
+      "deviceType": "SA",
+    },
+    "id": "32b3e36c-2e86-4f03-9a09-0b6c676057b3",
+    "modelName": "Ei3016 Optical Smoke Alarm",
+    "series": "3000",
+  },
+]
+`;
+
+exports[`FileDataSource CRUD tests List returns the list of filtered items 1`] = `
+[
+  {
+    "deviceConfiguration": {
+      "deviceType": "HA",
+      "temperatureHighThreshold": 31,
+      "temperatureLowThreshold": 16,
+    },
+    "id": "4796cc2e-1015-469d-87f1-f7a8a7c7a991",
+    "modelName": "Ei3014 Heat Alarm",
+    "series": "3000",
+  },
+  {
+    "deviceConfiguration": {
+      "concentrationHighThreshold": 0.4,
+      "deviceType": "SA",
+    },
+    "id": "32b3e36c-2e86-4f03-9a09-0b6c676057b3",
+    "modelName": "Ei3016 Optical Smoke Alarm",
+    "series": "3000",
+  },
+]
+`;
+
+exports[`FileDataSource CRUD tests Read returns a device successfully 1`] = `
+{
+  "deviceConfiguration": {
+    "concentrationHighThreshold": 0.4,
+    "deviceType": "SA",
+  },
+  "id": "32b3e36c-2e86-4f03-9a09-0b6c676057b3",
+  "modelName": "Ei3016 Optical Smoke Alarm",
+  "series": "3000",
+}
+`;
+
+exports[`FileDataSource CRUD tests Update updates a device successfully 1`] = `
+{
+  "deviceConfiguration": {
+    "concentrationHighThreshold": 0.5,
+    "deviceType": "SA",
+  },
+  "id": "32b3e36c-2e86-4f03-9a09-0b6c676057b3",
+  "modelName": "new_name",
+  "series": "new_series",
+}
+`;
+
+exports[`FileDataSource CRUD tests Update updates a device successfully 2`] = `"[{"series":"3000","modelName":"Ei3014 Heat Alarm","deviceConfiguration":{"deviceType":"HA","temperatureLowThreshold":16,"temperatureHighThreshold":31},"id":"4796cc2e-1015-469d-87f1-f7a8a7c7a991"},{"series":"1000","modelName":"Ei1020 Environmental Sensor","deviceConfiguration":{"deviceType":"ES"},"id":"992a28d9-c78d-416c-95df-c65c2ead406c"},{"deviceConfiguration":{"concentrationHighThreshold":0.5,"deviceType":"SA"},"id":"32b3e36c-2e86-4f03-9a09-0b6c676057b3","modelName":"new_name","series":"new_series"}]"`;
+
+exports[`FileDataSource CRUD tests When called with an existing file, the database is read properly 1`] = `"[{"id":"the_id","series":"the-series","modelName":"the-model","deviceConfiguration":{"deviceType":"ES"}}]"`;

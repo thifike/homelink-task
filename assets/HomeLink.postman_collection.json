@@ -1,0 +1,307 @@
+{
+  "info": {
+    "_postman_id": "5771c0d4-8fb9-4b64-a1fe-1e93b361b9ce",
+    "name": "HomeLink",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "40286789"
+  },
+  "item": [
+    {
+      "name": "RegisterDevice - HeatAlarm",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"series\": \"3000\",\r\n    \"modelName\": \"Ei3014 Heat Alarm\",\r\n    \"deviceConfiguration\": {\r\n        \"deviceType\": \"HA\",\r\n        \"temperatureLowThreshold\": 15,\r\n        \"temperatureHighThreshold\": 30\r\n    }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/devices/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["devices", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "RegisterDevice - HeatAlarm too short model name",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"series\": \"3000\",\r\n    \"modelName\": \"Ei\",\r\n    \"deviceConfiguration\": {\r\n        \"deviceType\": \"HA\",\r\n        \"temperatureLowThreshold\": 15,\r\n        \"temperatureHighThreshold\": 30\r\n    }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/devices/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["devices", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "RegisterDevice - HeatAlarm too short series",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"series\": \"30\",\r\n    \"modelName\": \"Ei3014 Heat Alarm\",\r\n    \"deviceConfiguration\": {\r\n        \"deviceType\": \"HA\",\r\n        \"temperatureLowThreshold\": 15,\r\n        \"temperatureHighThreshold\": 30\r\n    }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/devices/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["devices", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "RegisterDevice - HeatAlarm Bad",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"series\": \"3000\",\r\n    \"modelName\": \"Ei3014 Heat Alarm\",\r\n    \"deviceConfiguration\": {\r\n        \"deviceType\": \"HA\",\r\n        \"temperatureLowThreshold\": 15\r\n    }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/devices/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["devices", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "RegisterDevice - EnvironmentalSensor",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"series\": \"1000\",\r\n    \"modelName\": \"Ei1020 Environmental Sensor\",\r\n    \"deviceConfiguration\": {\r\n        \"deviceType\": \"ES\"\r\n    }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/devices/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["devices", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "RegisterDevice - SmokeAlarm",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"series\": \"3000\",\r\n    \"modelName\": \"Ei3016 Optical Smoke Alarm\",\r\n    \"deviceConfiguration\": {\r\n        \"deviceType\": \"SA\",\r\n        \"concentrationHighThreshold\": 0.2\r\n    }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/devices/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["devices", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "UpdateDeviceConfiguration",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"deviceType\": \"HA\",\r\n    \"temperatureLowThreshold\": 16,\r\n    \"temperatureHighThreshold\": 31\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/devices/4796cc2e-1015-469d-87f1-f7a8a7c7a991/configuration",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["devices", "4796cc2e-1015-469d-87f1-f7a8a7c7a991", "configuration"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DeleteDevice",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"deviceType\": \"HA\",\r\n    \"temperatureLowThreshold\": 16,\r\n    \"temperatureHighThreshold\": 31\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/devices/4796cc2e-1015-469d-87f1-f7a8a7c7a991/delete",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["devices", "4796cc2e-1015-469d-87f1-f7a8a7c7a991", "delete"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetDeviceDetails",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/devices/4796cc2e-1015-469d-87f1-f7a8a7c7a991",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["devices", "4796cc2e-1015-469d-87f1-f7a8a7c7a991"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetDeviceDetails non-existent",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/devices/4796cc2e-1015-469d-87f1-f7a8a7c7a992",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["devices", "4796cc2e-1015-469d-87f1-f7a8a7c7a992"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ListAllDevices",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/devices/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["devices", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Non-existent route",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/devices/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["devices", ""]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetDeviceDataPoint - HeatAlarm",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/devices/4796cc2e-1015-469d-87f1-f7a8a7c7a991/datapoint",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["devices", "4796cc2e-1015-469d-87f1-f7a8a7c7a991", "datapoint"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetDeviceDataPoint - EnvironmentalSensor",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/devices/4796cc2e-1015-469d-87f1-f7a8a7c7a991/datapoint",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["devices", "4796cc2e-1015-469d-87f1-f7a8a7c7a991", "datapoint"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetDeviceDataPoint - SmokeAlarm",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/devices/32b3e36c-2e86-4f03-9a09-0b6c676057b3/datapoint",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["devices", "32b3e36c-2e86-4f03-9a09-0b6c676057b3", "datapoint"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
